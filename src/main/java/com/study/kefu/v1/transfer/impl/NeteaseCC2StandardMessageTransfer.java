@@ -1,7 +1,6 @@
 package com.study.kefu.v1.transfer.impl;
 
 import com.study.kefu.v1.entity.message.Message;
-import com.study.kefu.v1.entity.message.netease.api.NeteaseApiMessage;
 import com.study.kefu.v1.entity.message.netease.cc.NeteaseCCMessage;
 import com.study.kefu.v1.entity.message.standard.StandardMessage;
 import com.study.kefu.v1.transfer.AbstractMessageTransfer;

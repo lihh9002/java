@@ -2,7 +2,7 @@ package com.study.kefu.v1.entity.message.standard;
 
 import com.study.kefu.v1.entity.message.Message;
 
-public class StandardMessage implements Message {
+public class StandardMessage<B> implements Message {
     public static final String FORMAT = "standard";
 
     /**消息ID*/
@@ -14,9 +14,13 @@ public class StandardMessage implements Message {
     //消息类型
     private String type;
     //消息体，由子类自定义格式
-    private Object body;
+    private B body;
     //时间戳
     private long timestamp;
+    //消息平台：小程序，公众号，云信
+    private String platform;
+    //原消息ID
+    private String msgId;
 
     public long getId() {
         return id;
@@ -50,11 +54,12 @@ public class StandardMessage implements Message {
         this.type = type;
     }
 
-    public Object getBody() {
+    @Override
+    public B getBody() {
         return body;
     }
 
-    public void setBody(Object body) {
+    public void setBody(B body) {
         this.body = body;
     }
 
@@ -64,5 +69,21 @@ public class StandardMessage implements Message {
 
     public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform;
+    }
+
+    public String getMsgId() {
+        return msgId;
+    }
+
+    public void setMsgId(String msgId) {
+        this.msgId = msgId;
     }
 }

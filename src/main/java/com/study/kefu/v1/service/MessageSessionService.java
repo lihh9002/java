@@ -59,11 +59,25 @@ public class MessageSessionService {
         MessageSession session = this.getBySessionId(sessionId);
         MessageSession newSession = this.copyUserSession(session);
         newSession.setServiceId(newServiceId);
+        newSession.setServiceRobot(session.getServiceRobot());
         this.saveSession(newSession);
         //原会话置为切换状态
         session.setStatus(-2);
         this.saveSession(session);
         return newSession.getSessionId();
+    }
+
+    /**
+     * 切换客服机器人
+     * @param sessionId
+     * @param serviceRobot
+     * @return
+     */
+    public MessageSession switchServiceRobot(String sessionId, Robot serviceRobot){
+        MessageSession session = this.getBySessionId(sessionId);
+        MessageSession newSession = this.copyUserSession(session);
+        newSession.setServiceRobot(serviceRobot);
+        return newSession;
     }
 
     /**
@@ -124,7 +138,6 @@ public class MessageSessionService {
         session.setStatus(1);//正常
         session.setVersion(ms.getVersion() + 1);
         session.setUserId(ms.getUserId());
-        session.setUserRobot(ms.getUserRobot());
         return session;
     }
 

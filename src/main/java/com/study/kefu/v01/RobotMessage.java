@@ -10,23 +10,11 @@ import org.slf4j.LoggerFactory;
 public abstract class RobotMessage implements Message {
     private final static Logger logger = LoggerFactory.getLogger(RobotMessage.class);
 
-    @Override
-    public String getFromId() {
-        logger.warn("不建议直接调用该方法，请调用getUserId");
-        return super.getFromId();
-    }
-
-    @Override
-    public String getToId() {
-        logger.warn("不建议直接调用该方法，请调用getRobotId");
-        return super.getToId();
-    }
-
     public String getUserId(){
-        return super.getFromId();
+        return getFromId();
     }
 
     public String getRobotId(){
-        return super.getToId();
+        return getToId();
     }
 }

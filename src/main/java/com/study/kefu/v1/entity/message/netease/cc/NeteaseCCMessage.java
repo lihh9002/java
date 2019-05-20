@@ -1,9 +1,8 @@
 package com.study.kefu.v1.entity.message.netease.cc;
 
 import com.study.kefu.v1.entity.message.AbstractCCMessage;
-import com.study.kefu.v1.entity.message.RobotMessage;
 
-public class NeteaseCCMessage extends AbstractCCMessage implements RobotMessage {
+public class NeteaseCCMessage extends AbstractCCMessage {
 
     //PERSON或CUSTOM_PERSON
     private String convType;
@@ -101,15 +100,5 @@ public class NeteaseCCMessage extends AbstractCCMessage implements RobotMessage 
     @Override
     public long getTimestamp() {
         return 0;
-    }
-
-    @Override
-    public String getUserId() {
-        return null;
-    }
-
-    @Override
-    public String getRobotId() {
-        return null;
     }
 }
