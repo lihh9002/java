@@ -4,6 +4,7 @@ import com.study.reflect.asm.visit.AsmClassInfo;
 import com.study.reflect.type.TypeAnnotatedTestClass;
 import org.apache.commons.collections.ArrayStack;
 import org.junit.Test;
+import org.springframework.boot.context.properties.source.ConfigurationPropertyName;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.core.GenericTypeResolver;
@@ -13,10 +14,7 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
+import java.lang.reflect.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -89,5 +87,29 @@ public class ResolvableTest {
         Class clazz
                 = GenericTypeResolver.resolveTypeArgument(bean.getClass(), ArrayList.class);
         System.out.println(clazz);
+    }
+
+    @Test
+    public void resolve(){
+        Class clazz = Void.class;
+        ResolvableType rtype = ResolvableType.forClass(clazz);
+        Class rclazz = rtype.resolve();
+        System.out.println(rclazz);
+        System.out.println(rclazz.isPrimitive());
+        if(rclazz.isPrimitive()){
+            Object array = Array.newInstance(rclazz, 1);
+            Class<?> wrapperType = Array.get(array, 0).getClass();
+            System.out.println(wrapperType);
+            rtype = ResolvableType.forClass(wrapperType);
+            System.out.println(rtype);
+        }
+    }
+
+    @Test
+    public void propertyName(){
+        String pname = "[abc.xyz].[m.n]";
+        pname = "a.[b][c]";
+        ConfigurationPropertyName name = ConfigurationPropertyName.of(pname);
+        System.out.println(name);
     }
 }

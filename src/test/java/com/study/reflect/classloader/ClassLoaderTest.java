@@ -16,7 +16,7 @@ public class ClassLoaderTest {
         String username = "root";
         String password = "123456";
         Connection connection = DriverManager.getConnection(url, username, password);
-        PreparedStatement ps = connection.prepareStatement("select * from tb_article");
+        PreparedStatement ps = connection.prepareStatement("select * from tb_insurance_policy");
         ResultSet rs = ps.executeQuery();
         while (rs.next()){
             System.out.println(rs.getInt("id"));
